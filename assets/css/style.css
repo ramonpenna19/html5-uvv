@@ -1,0 +1,64 @@
+
+/* Paleta de Cores */
+
+:root {
+  --azul: #247ba0;
+  --roxo: #88498f;
+  --branco: #f9f7f3;
+  --marrom: #7c3626;
+  --preto: #332e2b;
+}
+
+.azul { color: var( --azul) }
+.roxo { color: var( --roxo) }
+.branco { color: var( --branco) }
+.marrom { color: var( --marrom) }
+.preto { color: var( --preto) }
+
+.bg-azul { background-color: var( --azul) }
+.bg-roxo { background-color: var( --roxo) }
+.bg-branco { background-color: var( --branco) }
+.bg-marrom { background-color: var( --marrom) }
+.bg-preto { background-color: var( --preto) }
+
+* {
+  transition: 0.4s all !important;
+}
+
+body {
+  padding-top: 54px;
+}
+
+.fs-10 { font-size: 10px }
+.fs-15 { font-size: 15px }
+.fs-20 { font-size: 20px }
+.fs-25 { font-size: 25px }
+.fs-30 { font-size: 30px }
+
+.atv-list .list-group-item {
+  color: #000;
+}
+
+.atv-list .list-group-item:hover {
+  background-color: var(--azul);
+  color: var(--branco);
+}
+
+.atv-list .atv-title{
+  font-weight: bold;
+}
+
+.atv-list .atv-desc{
+  font-weight: bold;
+}
+
+.divider{
+  display: inline-block;
+  margin: 0 10px;
+}
+
+@media (min-width: 992px) {
+  body {
+    padding-top: 56px;
+  }
+}

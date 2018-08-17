@@ -1,15 +1,13 @@
 {
-    "title": "Modern Business",
-    "name": "startbootstrap-modern-business",
-    "version": "4.1.1",
-    "description": "A multipurpose HTML website template built with Bootstrap",
+    "title": "HTML5-UVV",
+    "name": "HTML5-UVV",
+    "version": "1",
+    "description": "",
     "keywords": [
         "css",
         "sass",
         "html",
-        "responsive",
-        "theme",
-        "template"
+        "responsive"
     ],
     "homepage": "https://startbootstrap.com/template-overviews/modern-business",
     "bugs": {
