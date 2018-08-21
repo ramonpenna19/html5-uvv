@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>HTML5 - Ramon Penna</title>
+
+    <!-- Global CSS -->
+    <link rel="stylesheet" href="../../assets/vendor/bootstrap/css/bootstrap.min.css">
+    <!-- FontAwesome JS -->
+    <script defer src="../../assets/vendor/fontawesome/js/fontawesome-all.min.js"></script>
+
+    <style>
+
+      .jogo {
+        text-align: center;
+        margin: 100px 0 50px;
+      }
+
+      .jogo .palavra {
+        height: 100px;
+        display: inline-block;
+        margin: 0 auto;
+      }
+
+      .jogo .letra {
+        width: 50px;
+        height: 50px;
+        border-bottom: 3px solid black;
+        padding: 10px 15px 5px;
+        float: left;
+        margin: 0 10px 50px;
+        text-align: center;
+      }
+
+      .erros span {
+        font-weight: bold;
+        margin: 0 5px;
+      }
+
+      form .form-group{
+        margin: 10px auto;
+      }
+
+      form input:focus {
+        box-shadow: none !important;
+      }
+
+      /* .tentativas */
+
+    </style>
+
+  </head>
+
+  <body class="bg-branco">
+
+      <div class="jogo">
+
+        <div class="palavra"></div>
+
+        <div class="m-auto">
+          <p class="tentativas">Número de tentativas erradas: <strong><span></span></strong></p>
+          <p class="erros">Erros: </p>
+          <p class="fimdejogo d-none"></p>
+          <p class="jogarnovamente d-none">
+            <a href="">
+              <button>Jogar Novamente <i class="fa fa-sync"></i></button>
+            </a>
+          </p>
+          <form class="form-inline" action="">
+            <div class="form-group">
+              <input type="text" class="form-control alpha-only" maxlength="1" title="Apenas uma letra">
+              <button class="btn btn-primary">
+                <i class="fa fa-search"></i>
+              </button>
+            </div>
+          </form>
+        </div>
+
+      </div>
+
+      <!-- /.row -->
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="../../assets/vendor/jquery/jquery.min.js"></script>
+    <script src="../../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+
+      var arrayPalavras = ['WIPE','GUN','HAIR','FLAWLESS','FORGETFUL','ROBUST','SNEEZE','SHIP','INSTRUCT','CAT','HIGH-PITCHED','LANGUID','INDUSTRIOUS','BRANCH','LOCK','LAUGH','SUMMER','NUMBER','MODERN','WEEK','DYNAMIC','WALL','OBSERVANT','DUSTY','VOLATILE','COOPERATIVE','JOKE','SCARF','ACCESSIBLE','EAR','DUST','PSYCHOTIC','KNEEL','FANG','CRY','STAKING','SOCIETY','IMPARTIAL','SYSTEM','CAPRICIOUS','ARCH','EDUCATED','HAUNT','JOBLESS','ELITE','BARBAROUS','MOURN','WOOZY','AHEAD','ALOOF','BRIGHT','INCREASE','LIVE','HURT','DANGEROUS','SYMPTOMATIC','TRICK','OVERCONFIDENT','CEMETERY','RANGE','VOLLEYBALL','MOTION','JOIN','SCARED','BUBBLE','HAND','HELP','MINIATURE','FUTURISTIC','BIRTHDAY','GUARDED','CERTAIN','HOVER','ANCIENT','REQUEST','UNARMED','STEP','START','RAKE','GRIP','GENERAL','DIRECTION','SUGAR','MERCIFUL','DRIP','RUB','BUCKET','MOMENTOUS','FALLACIOUS','MEAN','SLEEP','RECEIVE','ICE','LOUD','FLOWER','MANIACAL','JOG','HOLIDAY','TURN','FOUND'];
+      var indexRandom = Math.floor(Math.random() * arrayPalavras.length);
+      var palavra = arrayPalavras[indexRandom];
+      var tamanhoPalavra = arrayPalavras[indexRandom].length;
+      var tentativas = 5;
+      var letrasErradas = [];
+      var letrasAcertadas = [];
+      var letrasRestantes = [];
+
+      $(document).ready(function() {
+
+        $('.tentativas span').text(tentativas);
+        $('form input').focus();
+
+        for (let i = 0; i < tamanhoPalavra; i++) {
+          $('.palavra').prepend('<span class="letra"></span>');
+          if (letrasRestantes.indexOf(palavra[i]) === -1) {
+            letrasRestantes.push(palavra[i]);
+          }
+        }
+
+      });
+
+      function acertou(letra, indexPalavraRestante) {
+        for (let i = 0; i < tamanhoPalavra; i++) {
+          if (palavra[i] === letra) {
+            $( '.palavra .letra:nth-child(' + (i+1) + ')' ).text(letra);
+          }
+        }
+        letrasRestantes.splice(indexPalavraRestante, 1);
+        letrasAcertadas.push(letra);
+      }
+
+      function errou(letra) {
+        tentativas--;
+        $('.erros').append('<span>' + letra + '</span>');
+        letrasErradas.push(letra);
+      }
+
+      function vitoria() {
+        $('.fimdejogo').text('Vitória!');
+        fimdejogo();
+      }
+
+      function derrota() {
+        $('.fimdejogo').html('Perdeu! A palavra correta era: <strong><span>' + palavra + '</span></strong>');
+        fimdejogo();
+      }
+
+      function fimdejogo() {
+        $('form input').prop('disabled', true);
+        $('.fimdejogo').removeClass('d-none');
+        $('.jogarnovamente').removeClass('d-none');
+      }
+
+      function checaAcerto(letra) {
+        let indexPalavraRestante = letrasRestantes.indexOf(letra);
+        let indexPalavraAcertada = letrasAcertadas.indexOf(letra);
+
+        if (indexPalavraRestante > -1 && indexPalavraAcertada === -1) {
+          acertou(letra, indexPalavraRestante);
+        } else if(indexPalavraAcertada === -1){
+          errou(letra);
+        }
+
+      }
+
+      $("form").submit(function(event){
+
+        event.preventDefault();
+        let letra = $('form input').val().toUpperCase();
+
+        if (letra != '') {
+          if (letrasErradas.indexOf(letra) == -1) {
+
+            checaAcerto(letra);
+            $('.tentativas span').text(tentativas);
+
+            if (letrasRestantes.length === 0) {
+              vitoria();
+            }
+            if (tentativas === 0) {
+              derrota();
+            }
+          }
+
+          $('form input').val('');
+        }
+      });
+
+      $(".alpha-only").on("keydown", function(event){
+        var arr = [8,9,13,16,17,20,35,36,37,38,39,40,45,46];
+        for(var i = 65; i <= 90; i++){
+          arr.push(i);
+        }
+        if(jQuery.inArray(event.which, arr) === -1){
+          event.preventDefault();
+        }
+      });
+
+    </script>
+
+  </body>
+
+</html>

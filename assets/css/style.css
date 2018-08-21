@@ -21,10 +21,6 @@
 .bg-marrom { background-color: var( --marrom) }
 .bg-preto { background-color: var( --preto) }
 
-* {
-  transition: 0.4s all !important;
-}
-
 body {
   padding-top: 54px;
 }
@@ -35,8 +31,17 @@ body {
 .fs-25 { font-size: 25px }
 .fs-30 { font-size: 30px }
 
+.atv-list > * {
+  transition: 0.2s !important;
+}
+
+.atv-list {
+  margin: 15px 0;
+}
+
 .atv-list .list-group-item {
   color: #000;
+  padding: 5px 15px;
 }
 
 .atv-list .list-group-item:hover {
