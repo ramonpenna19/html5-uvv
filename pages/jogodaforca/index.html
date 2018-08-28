@@ -29,14 +29,21 @@
       }
 
       .jogo .letra {
-        width: 50px;
-        height: 50px;
-        border-bottom: 3px solid black;
-        padding: 10px 15px 5px;
-        float: left;
-        margin: 0 10px 50px;
-        text-align: center;
+        width: 40px;
+		height: 50px;
+		border-bottom: 3px solid black;
+		padding: 10px 0px 5px;
+		float: left;
+		margin: 0 5px 50px;
+		text-align: center;
+		border-color: red;
+		font-weight: bold;
+		font-size: 25px;
       }
+	  
+	  .jogo .dica {
+		font-size: 12px;
+	  }
 
       .erros span {
         font-weight: bold;
@@ -96,6 +103,7 @@
       var arrayPalavras = ['WIPE','GUN','HAIR','FLAWLESS','FORGETFUL','ROBUST','SNEEZE','SHIP','INSTRUCT','CAT','LANGUID','INDUSTRIOUS','BRANCH','LOCK','LAUGH','SUMMER','NUMBER','MODERN','WEEK','DYNAMIC','WALL','OBSERVANT','DUSTY','VOLATILE','COOPERATIVE','JOKE','SCARF','ACCESSIBLE','EAR','DUST','PSYCHOTIC','KNEEL','FANG','CRY','STAKING','SOCIETY','IMPARTIAL','SYSTEM','CAPRICIOUS','ARCH','EDUCATED','HAUNT','JOBLESS','ELITE','BARBAROUS','MOURN','WOOZY','AHEAD','ALOOF','BRIGHT','INCREASE','LIVE','HURT','DANGEROUS','SYMPTOMATIC','TRICK','OVERCONFIDENT','CEMETERY','RANGE','VOLLEYBALL','MOTION','JOIN','SCARED','BUBBLE','HAND','HELP','MINIATURE','FUTURISTIC','BIRTHDAY','GUARDED','CERTAIN','HOVER','ANCIENT','REQUEST','UNARMED','STEP','START','RAKE','GRIP','GENERAL','DIRECTION','SUGAR','MERCIFUL','DRIP','RUB','BUCKET','MOMENTOUS','FALLACIOUS','MEAN','SLEEP','RECEIVE','ICE','LOUD','FLOWER','MANIACAL','JOG','HOLIDAY','TURN','FOUND'];
       var indexRandom = Math.floor(Math.random() * arrayPalavras.length);
       var palavra = arrayPalavras[indexRandom];
+		console.log(palavra);
       var tamanhoPalavra = arrayPalavras[indexRandom].length;
       var tentativas = 5;
       var letrasErradas = [];
@@ -166,6 +174,10 @@
         }
 
       }
+	  
+	  $("html").click(function(event){
+		$("form input").focus();
+	  });
 
       $("form").submit(function(event){
 
