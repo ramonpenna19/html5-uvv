@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>HTML5 - Ramon Penna</title>
+
+    <!-- Global CSS -->
+    <link rel="stylesheet" href="../../assets/vendor/bootstrap/css/bootstrap.min.css">
+    <!-- FontAwesome JS -->
+    <script defer src="../../assets/vendor/fontawesome/js/fontawesome-all.min.js"></script>
+
+    <style>
+
+      .jogo {
+        margin-top: 100px;
+      }
+
+      .conteudo {
+        text-align: center;
+      }
+
+      .label span {
+        display: inline-block;
+        width: 150px;
+        text-align: center;
+        margin: 0 25px 10px;
+      }
+
+      .card-disputa, .btn-opcao, .botao {
+        display: inline-block;
+        height: 150px;
+        width: 150px;
+        border: 1px solid black;
+        margin: 0 25px 50px;
+        font-size: 30px;
+      }
+
+      .pontuacao {
+        font-size: 25px;
+      }
+
+    </style>
+
+  </head>
+
+  <body class="bg-branco">
+
+    <div class="jogo">
+
+      <div class="conteudo label">
+        <span>PLAYER 1</span>
+        <span>PONTUAÇÃO</span>
+        <span>PLAYER 2</span>
+      </div>
+
+      <div class="conteudo">
+        <button class="botao opcao-player1" disabled>&nbsp;</button>
+        <button class="botao pontuacao" disabled>
+          <span class="pt-p1">0</span>
+          <span class="times"><i class="fas fa-times"></i></span>
+          <span class="pt-p2">0</span>
+        </button>
+        <button class="botao opcao-player2" disabled>&nbsp;</button>
+      </div>
+
+      <div class="conteudo">
+        <button class="botao btn-opcao" value="1"><i class="far fa-hand-rock"></i></button>
+        <button class="botao btn-opcao" value="2"><i class="far fa-hand-paper"></i></button>
+        <button class="botao btn-opcao" value="3"><i class="far fa-hand-scissors"></i></button>
+      </div>
+
+    </div>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="../../assets/vendor/jquery/jquery.min.js"></script>
+    <script src="../../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+
+      var opcoes = [
+        {value: 1, icon: '<i class="far fa-hand-rock"></i>'}, // 1 - Pedra
+        {value: 2, icon: '<i class="far fa-hand-paper"></i>'}, // 2 - Papel
+        {value: 3, icon: '<i class="far fa-hand-scissors"></i>'} // 3 - Tesoura
+      ];
+
+      var pontuacao1 = 0;
+      var pontuacao2 = 0;
+
+      function calculaPonto(p1, p2) {
+        if (p1 == p2) {
+          $('.times').css('color', 'black');
+        } else {
+          if (p1 == 1){
+            if (p2 == 2) {
+              $('.times').css('color', 'red');
+              pontuacao2++;
+            }
+            if (p2 == 3) {
+              $('.times').css('color', 'green');
+              pontuacao1++;
+            }
+          } else if (p1 == 2){
+            if (p2 == 1) {
+              $('.times').css('color', 'green');
+              pontuacao1++;
+            }
+            if (p2 == 3) {
+              $('.times').css('color', 'red');
+              pontuacao2++;
+            }
+          } else {
+            if (p2 == 1) {
+              $('.times').css('color', 'red');
+              pontuacao2++;
+            }
+            if (p2 == 2) {
+              $('.times').css('color', 'green');
+              pontuacao1++;
+            }
+          }
+          // console.log(pontuacao1, pontuacao2);
+          $('.pt-p1').text(pontuacao1);
+          $('.pt-p2').text(pontuacao2);
+        }
+      }
+
+      $('.btn-opcao').click(function() {
+        let val = $(this).attr('value');
+        let opcao = opcoes.find(o => o.value == val);
+        let opcaoRival = Math.floor(Math.random() * opcoes.length);
+        $('.opcao-player1').html(opcao.icon);
+        $('.opcao-player2').html(opcoes[opcaoRival].icon);
+        calculaPonto(val, opcoes[opcaoRival].value);
+      });
+
+    </script>
+
+  </body>
+
+</html>
