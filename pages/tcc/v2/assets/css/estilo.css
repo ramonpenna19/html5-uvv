@@ -1,0 +1,47 @@
+#navbar .navbar .btn .material-icons {
+	top: 0;
+	margin-top: -1.1em;
+}
+
+.page-header {
+  height: 50vh;
+}
+
+.login-page .page-header {
+  height: 100vh;
+}
+
+.login-page .card-login .form {
+  min-height: 380px;
+}
+
+.main-raised {
+  padding-bottom: 20px;
+}
+
+.project-page .description {
+	margin: 1.071rem auto 0;
+  max-width: 600px;
+  color: inherit;
+}
+
+.rating-star {
+	font-size: 15px;
+}
+
+.card.dark {
+  background-color: #3c4858;
+}
+
+.card.dark > * {
+  color: white !important;
+}
+
+
+table.table tr th, table.table tr td {
+  vertical-align: middle;
+}
+
+.bmd-form-group label {
+  color: #3c4858;
+}
