@@ -1,4 +1,4 @@
-<div id="navbar">
+<div id="">
   <nav class="navbar fixed-top bg-dark navbar-expand-lg" color-on-scroll="100">
     <div class="container">
       <div class="navbar-translate">
@@ -20,20 +20,20 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="?page=entrepreneurs" class="nav-link">
+            <a href="?page=users" class="nav-link">
               Empreendedores
             </a>
           </li>
         </ul>
         <div class="navbar-nav ml-auto">
-          <?php if (false): ?>
+          <?php if (true): ?>
             <li class="nav-item">
-              <a href="#" class="btn btn-primary btn-sm btn-raised ml-3">
+              <a href="?page=user_form" class="btn btn-primary btn-sm btn-raised ml-3">
                 Cadastrar
               </a>
             </li>
             <li class="nav-item">
-              <a href="#" class="btn btn-primary btn-sm btn-raised ml-3">
+              <a href="?page=login" class="btn btn-primary btn-sm btn-raised ml-3">
                 Login
               </a>
             </li>
@@ -44,10 +44,9 @@
               </a>
               <div class="dropdown-menu dropdown-menu-right">
                 <h6 class="dropdown-header">Minha Conta</h6>
-                <a href="?page=myprofile" class="dropdown-item">Meu Perfil</a>
-                <a href="?page=myprojects" class="dropdown-item">Meus Projetos</a>
-                <a href="#" class="dropdown-item">Configurações</a>
-                <a href="#" class="dropdown-item">Sair</a>
+                <a href="?page=user_detail" class="dropdown-item">Meu Perfil</a>
+                <a href="?page=project_detail" class="dropdown-item">Meus Projetos</a>
+                <a href="?page=login" class="dropdown-item">Sair</a>
               </div>
             </li>
           <?php endif; ?>
