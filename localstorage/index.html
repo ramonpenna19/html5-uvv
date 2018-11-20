@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<title>Local Storage</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+
+	<div class="jumbotron">
+		<h1>Local Storage (autosave)</h1>
+		<p>Último Acesso: <span class="date"></span></p>
+	</div>
+	
+	<div class="container">
+		<form action="#" class="form">
+			<div class="form-group">
+				<input type="text" class="form-control nome">
+			</div>
+			<div class="form-group">
+				<textarea class="form-control texto"></textarea>
+			</div>
+			<button class="btn btn-primary">Save</button>
+		</form>
+	</div>
+
+	<script>
+
+		var texto = document.querySelector('.texto');
+		var nome = document.querySelector('.nome');
+		var date = document.querySelector('.date');
+
+		var now = moment().format('DD/MM/YYYY, HH:mm');
+
+		$('form > *').keyup(function(e) {
+			updateOutput();
+		});
+
+		texto.value = localStorage.getItem('texto');
+		nome.value = localStorage.getItem('nome');
+		date.value = localStorage.getItem('date');
+		localStorage.setItem('date', now);
+
+		$('.date').text(date.value);
+		
+
+		function updateOutput() {
+			localStorage.setItem('texto', texto.value);
+			localStorage.setItem('nome', nome.value);
+		}
+	</script>
+
+</body>
+</html>
